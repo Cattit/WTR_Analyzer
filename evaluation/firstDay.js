@@ -14,11 +14,12 @@ function amountLiquidRainfall(markerRainfall, amount, i) {  // если осад
             if (amount >= 50)
                 return 4
         }
-        if (i === 5)    // особый случай с допуском в 20%, см. наставление по оценке прогноозв погоды
+        if (i === 5) {    // особый случай с допуском в 20%, см. наставление по оценке прогноозв погоды
             if (amount >= 15 && amount < 40)
                 return 3
-        if (amount >= 40)
-            return 4
+            if (amount >= 40)
+                return 4
+        }
     }
 
     return 0 // markerRainfall = 0
@@ -36,11 +37,12 @@ function amountSolidRainfall(markerRainfall, amount, i) {  // если осад�
             if (amount >= 20)
                 return 4
         }
-        if (i === 5)    // особый случай с допуском в 20%, см. наставление по оценке прогноозв погоды
+        if (i === 5) {    // особый случай с допуском в 20%, см. наставление по оценке прогноозв погоды
             if (amount >= 6 && amount < 16)
                 return 3
-        if (amount >= 16)
-            return 4
+            if (amount >= 16)
+                return 4
+        }
     }
 
     return 0 // markerRainfall = 0
@@ -92,7 +94,7 @@ function calculate(forecast, real) {    // ПРОЦЕНТЫ
 
     const realAmountRainfall = (real.rainfall_from + real.rainfall_to) / 2 // !!! изменить
     let i, j    // i - строка (прогноз), j - столбец(факт)
-    if (real.snow === 1 && (real.rain === 0 || real.rainsnow === 0)) {   // только твердые осадки
+    if (real.snow === 1 && real.rain === 0 && real.rainsnow === 0) {   // только твердые осадки
         i = amountSolidRainfall(markerRainfallForecast, forecast.amount_rainfall, -1)
         j = amountSolidRainfall(markerRainfallReal, realAmountRainfall, i)
     }
@@ -103,8 +105,9 @@ function calculate(forecast, real) {    // ПРОЦЕНТЫ
     let amount_rainfall = masRainfall[i][j]
 
 
-    // console.log(temperature, wind_speed, rainfall, amount_rainfall)
+    console.log(temperature, wind_speed, rainfall, amount_rainfall)
     // console.log(i, j)
+    console.log((temperature + wind_speed + rainfall + amount_rainfall) / 4)
     return (temperature + wind_speed + rainfall + amount_rainfall) / 4
 }
 module.exports.calculate = calculate
