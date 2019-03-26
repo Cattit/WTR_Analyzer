@@ -11,7 +11,7 @@ function hard_rainfall() {
 function collectWeather(dataAll) {
     let rainfall_from = dataAll.map(d => d.rainfall_from).reduce((a, b) => a + b),
         rainfall_to = dataAll.map(d => d.rainfall_to).reduce((a, b) => a + b),
-        rainfall = (rainfall_from + rainfall_to) / 2     // !!! изменить
+        rainfall = (rainfall_from + rainfall_to) / 2
     return {
         temperature: type_day(dataAll[0]) ? Math.max(...dataAll.map(d => d.temperature), dataAll[0].temperature) : Math.min(...dataAll.map(d => d.temperature), dataAll[0].temperature), // находим минимальную температуру ночью, максимальную днем
         wind_speed_from: Math.min(...dataAll.map(d => d.wind_speed_from), dataAll[0].wind_speed_from),   // минимум ветра

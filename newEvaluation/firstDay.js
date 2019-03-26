@@ -128,9 +128,9 @@ function calculate(forecast, real) {    // ПРОЦЕНТЫ
     if (j === 4 || j === 5) real.hard_rainfall = 1
     let rainfall = weatherEvent([forecast.snow, forecast.rain, forecast.rainsnow, forecast.mist, forecast.sand, forecast.squall, forecast.storm, forecast.drizzle, forecast.hard_wind, forecast.hard_heat, forecast.hard_frost, forecast.hard_rainfall], [real.snow, real.rain, real.rainsnow, real.mist, real.sand, real.squall, real.storm, real.drizzle, real.hard_wind, real.hard_heat, real.hard_frost, real.hard_rainfall])
 
-    console.log(temperature, wind_speed, rainfall, amount_rainfall, globalCount)
-    console.log(i, j)
-    console.log((temperature + wind_speed + rainfall + amount_rainfall) / globalCount)
+    // console.log(temperature, wind_speed, rainfall, amount_rainfall, globalCount)
+    // console.log(i, j)
+    // console.log((temperature + wind_speed + rainfall + amount_rainfall) / globalCount)
 
     return (temperature + wind_speed + rainfall + amount_rainfall) / globalCount
 }
