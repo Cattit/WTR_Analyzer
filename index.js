@@ -28,7 +28,7 @@ async function getDataFromDB() {
     const masDSL = await dal.getDepthSourceLocation() //DepthSourceLocation  
     for (let i = 0; i < masDSL.length; i++) {
         let markDay = await getMark(masDSL[i].id_source, masDSL[i].id_location, masDSL[i].depth)
-        await dal.saveRaiting(masDSL[i].id_source, markDay, masDSL[i].depth, yesterday, masDSL[i].id_location)
+        await dal.saveRaiting(masDSL[i].id_source, markDay, masDSL[i].depth, yesterday, masDSL[i].id_location, yesterday)
     }
 }
 
