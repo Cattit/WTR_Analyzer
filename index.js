@@ -26,6 +26,12 @@ async function getMark(id_source, id_location, depth_forecast) {
 
 async function getDataFromDB() {
     const masDSL = await dal.getDepthSourceLocation() //DepthSourceLocation  
+    
+//    for (let j = 0; j < masDSL.length; j++)	// удалить из оценки какие-либо данные
+//         if (masDSL[j].depth === 3)
+//             masDSL.splice(j, 1);
+//    console.log(masDSL)
+    
     for (let i = 0; i < masDSL.length; i++) {
         let markDay = await getMark(masDSL[i].id_source, masDSL[i].id_location, masDSL[i].depth)
         await dal.saveRaiting(masDSL[i].id_source, markDay, masDSL[i].depth, yesterday, masDSL[i].id_location, yesterday)

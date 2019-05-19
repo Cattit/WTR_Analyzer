@@ -75,10 +75,12 @@ function windSpeed(Fwind_speed_from, Fwind_speed_to, Fwind_gust, Rwind_speed_to,
     maxForecastWind = Math.max(Fwind_speed_to, Fwind_gust)
     maxRealtWind = Math.max(Rwind_speed_to, Rwind_gust)
     if (maxRealtWind >= 15) {  // меньше 15 мс ветер не оценивается
-        if (maxForecastWind >= 15 && (Math.abs(maxRealtWind - Fwind_speed_from) <= 2 || Math.abs(maxRealtWind - maxForecastWind) <= 2 || (maxRealtWind >= Fwind_speed_from && maxRealtWind <= maxForecastWind)))
+        if (maxForecastWind >= 15 && (Math.abs(maxRealtWind - Fwind_speed_from) <= 2 || Math.abs(maxRealtWind - maxForecastWind) <= 2 || (maxRealtWind >= Fwind_speed_from && maxRealtWind <= maxForecastWind))){
+    	    globalCount++
             return justify
-        else {
-            globalCount++
+        }
+        else{
+    	    globalCount++
             return nojustify
         }
     }

@@ -4,13 +4,13 @@ async function calculate(month, year) {
 
     let date_start = new Date(year, month - 1, 1);
     let date_end = new Date(year, month, 0);
-    const masDSLM = await dal.getDepthSourceLocation();
+    const masDSL = await dal.getDepthSourceLocation();
 
-    for (i = 0; i < masDSLM.length; i++) {
+    for (let i = 0; i < masDSL.length; i++) {
         let mark = 0;
-        for (let curDate = date_start; curDate <= date_end; curDate.setDate(curDate.getDate() + 1), count++)
-            mark = await dal.getRaitingAvgDaily(masDSLM[i].id_source, masDSLM[i].depth, date_start, masDSLM[i].id_location, date_end);
+        mark = await dal.getRaitingAvgDaily(masDSL[i].id_source, masDSL[i].depth, date_start, masDSL[i].id_location, date_end);
         await dal.saveRaiting(masDSL[i].id_source, mark, masDSL[i].depth, date_start, masDSL[i].id_location, date_end)
+	//console.log(mark, masDSL[i].depth, masDSL[i].id_source, masDSL[i].id_location)
     }
 }
 
